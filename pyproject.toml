@@ -1,0 +1,108 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+
+[project]
+name = "ut"
+dynamic = ["version"]
+description = "Python utilities for better development."
+readme = "README.md"
+requires-python = ">=3.9"
+license = "MIT"
+keywords = ["utility", "functional", "service"]
+authors = []
+classifiers = [
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Software Development :: Libraries",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+  "Topic :: Utilities",
+  "Framework :: Pytest"
+]
+
+
+### -------------------- ###
+### *** DEPENDENCIES *** ###
+### -------------------- ###
+
+dependencies = []
+
+
+[dependency-groups]
+dev = [
+    "black>=25.1.0",
+    "hatch>=1.14.1",
+    "pre-commit>=4.2.0",
+    "pytest>=8.3.5",
+    "ruff>=0.11.7",
+]
+
+
+[project.urls]
+Documentation = "https://github.com/tavor118/ut#readme"
+Issues = "https://github.com/tavor118/ut/issues"
+Source = "https://github.com/tavor118/ut"
+
+
+[project.entry-points.pytest11]
+ut = "ut.fixtures"
+
+
+### ------------- ###
+### *** HATCH *** ###
+### ------------- ###
+
+[tool.hatch.version]
+path = "src/ut/__about__.py"
+
+[tool.hatch.envs.types]
+extra-dependencies = [
+  "mypy>=1.0.0",
+]
+[tool.hatch.envs.types.scripts]
+check = "mypy --install-types --non-interactive {args:src/ut tests}"
+
+[tool.coverage.run]
+source_pkgs = ["ut", "tests"]
+branch = true
+parallel = true
+omit = [
+  "src/ut/__about__.py",
+]
+
+[tool.coverage.paths]
+ut = ["src/ut", "*/ut/src/ut"]
+tests = ["tests", "*/ut/tests"]
+
+[tool.coverage.report]
+exclude_lines = [
+  "no cov",
+  "if __name__ == .__main__.:",
+  "if TYPE_CHECKING:",
+]
+
+
+### ------------- ###
+### *** BLACK *** ###
+### ------------- ###
+
+[tool.black]
+line-length = 90
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
+'''

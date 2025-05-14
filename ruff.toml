@@ -1,0 +1,116 @@
+required-version = ">=0.11.5"
+
+# Same as Black
+line-length = 90
+indent-width = 4
+
+# Assume Python 3.13
+target-version = "py313"
+
+# Exclude a variety of commonly ignored directories
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".hg",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "venv",
+    "docs/*",
+]
+
+
+[lint]
+select = [
+    "FAST", # FastAPI (FAST)
+    "YTT", # flake8-2020 (YTT)
+    "ANN", # flake8-annotations (ANN)
+    # "ASYNC", # flake8-async (ASYNC)
+    "S", # flake8-bandit (S)
+    "BLE", # flake8-blind-except (BLE)
+    "FBT", # flake8-boolean-trap (FBT)
+    "B", # flake8-bugbear (B)
+    "COM", # flake8-commas (COM)
+    "C4", # flake8-comprehensions (C4)
+    "DTZ", # flake8-datetimez (DTZ)
+    "T10", # flake8-debugger (T10)
+    "DJ", # flake8-django (DJ)
+    "EM", # flake8-errmsg (EM)
+    "ISC", # flake8-implicit-str-concat (ISC)
+    "ICN", # flake8-import-conventions (ICN)
+    "LOG", # flake8-logging (LOG)
+    "G", # flake8-logging-format (G)
+    "INP", # flake8-no-pep420 (INP)
+    "PIE", # flake8-pie (PIE)
+    "T20", # flake8-print (T20)
+    "PYI", # flake8-pyi (PYI)
+    # "PT", # flake8-pytest-style (PT)
+    "Q", # flake8-quotes (Q)
+    "RSE", # flake8-raise (RSE)
+    "RET", # flake8-return (RET)
+    "SLF", # flake8-self (SLF)
+    "SIM", # flake8-simplify (SIM)
+    "SLOT", # flake8-slots (SLOT)
+    "TC", # flake8-type-checking (TC)
+    "ARG", # flake8-unused-arguments (ARG)
+    "PTH", # flake8-use-pathlib (PTH)
+    "FLY", # flynt (FLY)
+    "I", # isort (I)
+    "C90", # mccabe (C90)
+    "N", # pep8-naming (N)
+    "PERF", # Perflint (PERF)
+    "E", # pycodestyle Error (E)
+    "W", # pycodestyle Warning (W)
+    # "DOC", # pydoclint (DOC)
+    # "D", # pydocstyle (D)
+    "F", # Pyflakes (F)
+    "PGH", # pygrep-hooks (PGH)
+    "PLC", # Pylint Convention (PLC)
+    "PLE", # Pylint Error (PLE)
+    "PLR", # Pylint Refactor (PLR)
+    "PLW", # Pylint Warning (PLW)
+    "UP", # pyupgrade (UP)
+    "FURB", # refurb (FURB)
+    "RUF", # Ruff-specific rules (RUF)
+    "TRY", # tryceratops (TRY)
+]
+ignore = [
+    "ANN401", # any-type (ANN401)
+    "COM812", # missing-trailing-comma (COM812)
+    "FBT001", # boolean-type-hint-positional-argument (FBT001)
+    "RUF001", # ambiguous-unicode-character-string (RUF001)
+    "RUF002", # ambiguous-unicode-character-docstring (RUF002)
+    "RUF003", # ambiguous-unicode-character-comment (RUF003)
+    "S101", # S101	Use of assert detected
+    "TC006", # runtime-cast-value (TC006)
+    "UP006", # non-pep585-annotation (UP006) (to be compatible with py3.7)
+    "UP007", # non-pep604-annotation-union (UP007) (to be compatible with py3.7)
+    "UP035", # deprecated-import (UP035) (to be compatible with py3.7)
+]
+
+# Allow fix for all enabled rules (when `--fix`) is provided
+fixable = ["ALL"]
+unfixable = []
+
+
+[lint.per-file-ignores]
+"__init__.py" = ["F401"]  # Ignore unused imports in __init__.py files
+"tests/**/*.py" = [
+    "ANN", # Ignore missing type annotations in tests
+    "F841", # Ignore assignment to unused variable
+    "PLR2004",  # Ignore magic value used in comparison in tests
+]
